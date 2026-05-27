@@ -21,13 +21,9 @@ A versatile AI image generation skill powered by GPT-Image-2 model.
 
 ## Pricing
 
-| Package | Images | Price |
-|---------|--------|-------|
-| Starter | 100 images | ¥10 |
-| Standard | 500 images | ¥45 |
-| Pro | 1000 images | ¥80 |
+**¥0.1 per image** (pay-per-use, no monthly fee)
 
-Pay-per-use: **¥0.1 per image**
+No free credits. No subscription. Pay only for what you use.
 
 ## Quick Start
 
