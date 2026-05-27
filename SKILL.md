@@ -30,8 +30,8 @@ No free credits. No subscription. Pay only for what you use.
 ### 1. Get Your API Key
 
 1. Visit **https://chuangshimao.com** and register an account
-2. Navigate to **Personal Center → API Key Management**
-3. Generate a new API key (starts with `sk-img2-`)
+2. Your API Key is automatically generated after registration (starts with `sk-img2-`)
+3. No manual creation needed, just copy and use
 
 ### 2. Configure the Skill
 
