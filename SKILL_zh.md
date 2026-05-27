@@ -62,6 +62,7 @@ Content-Type: application/json
 |------|------|------|------|
 | prompt | string | 是 | 图片描述（支持中文） |
 | size | string | 否 | 图片比例，默认 "1:1" |
+| image_url | string | 否 | 参考图URL，支持图生图模式 |
 
 ### 支持的图片比例
 

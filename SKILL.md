@@ -60,6 +60,7 @@ Content-Type: application/json
 |-----------|------|----------|-------------|
 | prompt | string | Yes | Image description (supports Chinese) |
 | size | string | No | Aspect ratio, default "1:1" |
+| image_url | string | No | Reference image URL for image-to-image mode |
 
 ### Supported Aspect Ratios
 
