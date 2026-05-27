@@ -1,11 +1,11 @@
 ---
 name: chuangshimao-skills
-description: AI image generation skill using GPT-Image-2 model. Generate images from text descriptions with support for multiple aspect ratios. Features include text-to-image, image editing, and style transfer capabilities.
+description: AI image generation skill using GPT-Image-2 model. Simply provide a text prompt and size to generate images. Supports 15 aspect ratios.
 ---
 
 # chuangshimao-skills
 
-A versatile AI image generation skill powered by GPT-Image-2 model.
+AI image generation skill powered by GPT-Image-2 model.
 
 ## Service Endpoint
 
@@ -14,16 +14,13 @@ A versatile AI image generation skill powered by GPT-Image-2 model.
 ## Capabilities
 
 - **Text-to-Image**: Generate images from text descriptions
-- **Multiple Ratios**: Support for 15 aspect ratios (1:1, 3:2, 16:9, 9:16, etc.)
-- **High Resolution**: 1K resolution output
+- **15 Aspect Ratios**: 1:1, 3:2, 16:9, 9:16, etc.
 - **Chinese Support**: Full Chinese prompt support
-- **Fast Generation**: Results in ~30 seconds
+- **Fast Generation**: Results in ~60 seconds
 
 ## Pricing
 
 **¥0.1 per image** (pay-per-use, no monthly fee)
-
-No free credits. No subscription. Pay only for what you use.
 
 ## Quick Start
 
@@ -33,20 +30,12 @@ No free credits. No subscription. Pay only for what you use.
 2. Your API Key is automatically generated after registration (starts with `sk-img2-`)
 3. No manual creation needed, just copy and use
 
-### 2. Configure the Skill
-
-```bash
-# Set your API key as environment variable
-export IMG2_API_KEY="sk-img2-your-key-here"
-```
-
-### 3. Generate Your First Image
+### 2. Generate an Image
 
 ```json
 {
   "prompt": "A beautiful sunset over the ocean, digital art style",
-  "size": "16:9",
-  "resolution": "1k"
+  "size": "16:9"
 }
 ```
 
@@ -70,9 +59,7 @@ Content-Type: application/json
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | prompt | string | Yes | Image description (supports Chinese) |
-| size | string | No | Aspect ratio (default: 1:1) |
-| resolution | string | No | Output resolution (default: 1k) |
-| image_url | string | No | Reference image URL for editing |
+| size | string | No | Aspect ratio, default "1:1" |
 
 ### Supported Aspect Ratios
 
@@ -84,7 +71,7 @@ Content-Type: application/json
 | 4:3 | Standard landscape |
 | 3:4 | Standard portrait |
 | 16:9 | Cinematic |
-| 9:16 | MobileStory |
+| 9:16 | Mobile story |
 | 2:1 | Ultra-wide |
 | 1:2 | Ultra-tall |
 | 3:1 | Banner |
@@ -99,88 +86,41 @@ Content-Type: application/json
 ```json
 {
   "code": 0,
-  "image_url": "https://your-cdn.com/image.png",
+  "image_url": "https://cdn.example.com/image.png",
   "prompt": "A beautiful sunset over the ocean",
   "size": "16:9",
-  "resolution": "1k",
-  "time": "25.3s"
+  "time": "52.3s"
 }
 ```
 
 ## Usage Examples
 
-### Example 1: Generate a Landscape Image
+### Example: Generate a Landscape
 
 ```json
 {
-  "prompt": "A majestic mountain range at sunrise, photorealistic, 4K",
-  "size": "16:9",
-  "resolution": "1k"
+  "prompt": "A majestic mountain range at sunrise, photorealistic",
+  "size": "16:9"
 }
 ```
 
-### Example 2: Generate a Portrait
+### Example: Generate a Square Image
 
 ```json
 {
-  "prompt": "A professional portrait photo of a businesswoman, studio lighting",
-  "size": "3:4",
-  "resolution": "1k"
+  "prompt": "一只橘色的猫坐在窗台上,宫崎骏动画风格",
+  "size": "1:1"
 }
 ```
 
-### Example 3: Social Media Cover
+### Example: Generate a Portrait
 
 ```json
 {
-  "prompt": "Modern tech startup office, team collaboration, bright and airy",
-  "size": "16:9",
-  "resolution": "1k"
+  "prompt": "Professional portrait photo of a businesswoman, studio lighting",
+  "size": "3:4"
 }
 ```
-
-## Image Editing
-
-To edit an existing image, provide the `image_url` parameter:
-
-```json
-{
-  "prompt": "Transform this photo into an anime style",
-  "size": "1:1",
-  "image_url": "https://example.com/photo.jpg"
-}
-```
-
-## Best Practices
-
-### Writing Good Prompts
-
-1. **Be specific**: Include details about subject, setting, style
-2. **Mention art style**: "digital art", "photorealistic", "oil painting"
-3. **Include lighting**: "natural light", "studio lighting", "golden hour"
-4. **Add atmosphere**: "mysterious", "cheerful", "dramatic"
-
-### Good Prompt Examples
-
-```
-"一只橘色的猫坐在窗台上,阳光透过窗户洒落,宫崎骏动画风格,温暖色调"
-↓
-English: "An orange cat sitting on a windowsill, sunlight streaming through, Studio Ghibli animation style, warm tones"
-
-"未来城市夜景,霓虹灯闪烁,赛博朋克风格,下雨的街道反射灯光"
-↓
-English: "Futuristic city night scene, neon lights glowing, cyberpunk style, rainy street reflecting lights"
-```
-
-### Choosing the Right Ratio
-
-| Use Case | Recommended Ratio |
-|----------|------------------|
-| Social media feed | 1:1 or 4:5 |
-| Twitter/X post | 16:9 |
-| Instagram story | 9:16 |
-| Blog header | 16:9 or 21:9 |
-| Product showcase | 3:4 or 4:5 |
 
 ## Error Handling
 
@@ -192,31 +132,63 @@ English: "Futuristic city night scene, neon lights glowing, cyberpunk style, rai
 | 429 | 请求过于频繁，请稍后再试 | Wait and retry |
 | 500 | 生成失败，请稍后重试 | Contact support |
 
-## Rate Limits
+## Code Examples
 
-- **Concurrent requests**: 2 per API key
-- **Requests per minute**: 10 per API key
-- **Maximum prompt length**: 2000 characters
+### cURL
+
+```bash
+curl -X POST https://api.chuangshimao.com/api/v1/generate \
+  -H 'Authorization: Bearer YOUR_API_KEY' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "prompt": "一只橘猫坐在窗台上看夕阳，水彩画风格",
+    "size": "16:9"
+  }'
+```
+
+### Python
+
+```python
+import requests
+
+url = 'https://api.chuangshimao.com/api/v1/generate'
+payload = {
+    'prompt': '一只橘猫坐在窗台上看夕阳，水彩画风格',
+    'size': '16:9'
+}
+headers = {'Authorization': 'Bearer YOUR_API_KEY', 'Content-Type': 'application/json'}
+response = requests.post(url, json=payload, headers=headers)
+print(response.json())
+```
+
+### JavaScript
+
+```javascript
+const response = await fetch('https://api.chuangshimao.com/api/v1/generate', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer YOUR_API_KEY',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    prompt: '一只橘猫坐在窗台上看夕阳，水彩画风格',
+    size: '16:9'
+  })
+});
+const data = await response.json();
+console.log(data.image_url);
+```
 
 ## FAQ
 
 **Q: How long does generation take?**
-A: Typically 25-60 seconds depending on complexity.
+A: Typically 50-80 seconds depending on server load.
 
 **Q: Can I use generated images commercially?**
 A: Yes, all generated images can be used commercially.
 
 **Q: What payment methods are supported?**
-A: WeChat Pay, Alipay, and major credit cards.
-
-**Q: Is there a free trial?**
-A: New users receive ¥10 in free credits (100 images).
-
-## Support
-
-For issues or questions:
-- Check the documentation
-- Contact support team
+A: WeChat Pay, Alipay.
 
 ---
 
