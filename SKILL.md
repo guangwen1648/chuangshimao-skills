@@ -1,6 +1,6 @@
 ---
 name: chuangshimao-skills
-description: AI image generation skill using GPT-Image-2 model. Simply provide a text prompt and size to generate images. Supports 15 aspect ratios.
+description: AI image generation skill using GPT-Image-2 model. Supports text-to-image, image-to-image, 15 aspect ratios, and balance query API.
 ---
 
 # chuangshimao-skills
@@ -14,9 +14,11 @@ AI image generation skill powered by GPT-Image-2 model.
 ## Capabilities
 
 - **Text-to-Image**: Generate images from text descriptions
+- **Image-to-Image**: Generate images from reference image + prompt
 - **15 Aspect Ratios**: 1:1, 3:2, 16:9, 9:16, etc.
 - **Chinese Support**: Full Chinese prompt support
 - **Fast Generation**: Results in ~60 seconds
+- **Balance Query**: Check account balance via API
 
 ## Pricing
 
@@ -94,6 +96,35 @@ Content-Type: application/json
 }
 ```
 
+## Balance Query
+
+### Endpoint
+
+```
+GET https://api.chuangshimao.com/api/v1/balance
+```
+
+### Headers
+
+```
+Authorization: Bearer YOUR_TOKEN
+```
+
+### Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| token | string | Yes | User token (obtained after login) |
+
+### Response
+
+```json
+{
+  "balance": 28.5,
+  "user_id": 1
+}
+```
+
 ## Usage Examples
 
 ### Example: Generate a Landscape
@@ -120,6 +151,16 @@ Content-Type: application/json
 {
   "prompt": "Professional portrait photo of a businesswoman, studio lighting",
   "size": "3:4"
+}
+```
+
+### Example: Image-to-Image
+
+```json
+{
+  "prompt": "Convert this into a cyberpunk style image",
+  "size": "16:9",
+  "image_url": "https://example.com/reference.jpg"
 }
 ```
 
